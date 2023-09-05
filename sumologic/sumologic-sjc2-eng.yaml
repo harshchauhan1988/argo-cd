@@ -1,0 +1,23 @@
+sumologic:
+  accessId: <path:backend-nonprod/us-west-2/kubernetes/argocdapp/helm-secrets#common-sumologic-accessid>
+  accessKey: <path:backend-nonprod/us-west-2/kubernetes/argocdapp/helm-secrets#common-sumologic-accesskey>
+  clusterName: sjc2-eng
+  collectorName: sa_tkg_preprod
+  metrics:
+    enabled: false
+fluentd:
+  logs:
+    containers:
+      sourceCategoryPrefix: "live/preprod/sa_tkg/"
+    kubelet:
+      sourceCategoryPrefix: "live/preprod/sa_tkg/"
+    systemd:
+      sourceCategoryPrefix: "live/preprod/sa_tkg/"
+  persistence:
+    enabled: false
+metadata:
+  persistence:
+    enabled: false
+otelevents:
+  persistence:
+    enabled: false
