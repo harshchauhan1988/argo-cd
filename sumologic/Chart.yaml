@@ -1,13 +1,10 @@
+# Chart.yaml
 apiVersion: v2
 name: sumologic
-version: 3.14.0
-appVersion: 3.14.0
-description: A Helm chart for collecting Kubernetes logs, metrics, traces and events into Sumo Logic.
-type: application
-keywords:
-  - monitoring
-  - logging
-icon: https://raw.githubusercontent.com/SumoLogic/sumologic-kubernetes-collection/main/images/sumo_logic_logo.png
-home: https://github.com/SumoLogic/sumologic-kubernetes-collection
+description: A Helm chart for deploying Sumo Logic collectors and Fluentd to send logs to Sumo Logic.
+version: 1.0.0
+appVersion: 2.0.0
+# Source code repository information
 sources:
-  - https://github.com/SumoLogic/sumologic-kubernetes-collection
+  - name: Sumo Logic GitHub Repository
+    url: https://github.com/your-organization/sumologic-chart
