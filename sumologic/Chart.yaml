@@ -8,3 +8,4 @@ appVersion: 2.0.0
 sources:
   - name: Sumo Logic GitHub Repository
     url: https://github.com/your-organization/sumologic-chart
+
