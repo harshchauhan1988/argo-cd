@@ -1,11 +1,10 @@
 # Chart.yaml
-apiVersion: v2
+apiVersion: v1
+description: Official Elastic helm chart for Sumologic
 name: sumologic
-description: A Helm chart for deploying Sumo Logic collectors and Fluentd to send logs to Sumo Logic.
-version: 1.0.0
-appVersion: 2.0.0
-# Source code repository information
+version: 2.18.1
+appVersion: 1.0.1
 sources:
-  - name: Sumo Logic GitHub Repository
-    url: https://github.com/your-organization/sumologic-chart
+  - https://sumologic.github.io/sumologic-kubernetes-collection
+
 
