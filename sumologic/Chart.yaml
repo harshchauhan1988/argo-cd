@@ -1,5 +1,4 @@
 name: sumologic
-type: library
 chart: sumologic/sumologic
 version: 2.18.1
 repository: "https://sumologic.github.io/sumologic-kubernetes-collection"
