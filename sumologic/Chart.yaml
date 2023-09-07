@@ -3,7 +3,7 @@ apiVersion: v1
 description: Official Elastic helm chart for Sumologic
 name: sumologic
 version: 2.18.1
-appVersion: 1.0.1
+chart: sumologic/sumologic
 sources:
   - https://sumologic.github.io/sumologic-kubernetes-collection
 
