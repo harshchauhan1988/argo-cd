@@ -1,6 +1,6 @@
 # Chart.yaml
 apiVersion: v1
-description: Official Elastic helm chart for Sumologic
+description: Official helm chart for Sumologic
 name: sumologic
 version: 2.18.1
 chart: sumologic/sumologic
