@@ -23,7 +23,7 @@ version: 0.1.0
 appVersion: "1.0"
 
 dependencies:
-- name: sumologic/sumologic
+- name: sumologic
   version: 2.18.1
   repository: https://sumologic.github.io/sumologic-kubernetes-collection
 
