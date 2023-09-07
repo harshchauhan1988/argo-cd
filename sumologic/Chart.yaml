@@ -1,4 +1,9 @@
 # Chart.yaml
+apiVersion: v2
+name: guestbook
+description: A Helm chart for Kubernetes
+type: application
+version: 2.18.1
 dependencies:
 - name: sumologic
   version: 2.18.1
