@@ -27,3 +27,5 @@ opentelemetry-operator:
   enabled: false
 metrics:
     enabled: false
+falco:
+  enabled: false
