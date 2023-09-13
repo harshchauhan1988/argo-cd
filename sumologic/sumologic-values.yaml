@@ -21,3 +21,5 @@ metadata:
 otelevents:
   persistence:
     enabled: false
+otelagent:
+  enabled: false
