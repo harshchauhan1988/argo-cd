@@ -1,6 +1,6 @@
 sumologic:
-  accessId: "<path:backend-nonprod/us-west-2/kubernetes/argocdapp/helm-secrets#accessid | base64encode>"
-  accessKey: "<path:backend-nonprod/us-west-2/kubernetes/argocdapp/helm-secrets#accesskey | base64encode>"
+  accessId: <path:backend-nonprod/us-west-2/kubernetes/argocdapp/helm-secrets#accessid>
+  accessKey: <path:backend-nonprod/us-west-2/kubernetes/argocdapp/helm-secrets#accesskey>
   clusterName: sjc2-eng
   collectorName: sa_tkg_preprod
   metrics:
