@@ -26,4 +26,4 @@ otelagent:
 opentelemetry-operator:
   enabled: false
 metrics:
-    enabled: true
+    enabled: false
