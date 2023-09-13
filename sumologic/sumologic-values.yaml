@@ -23,3 +23,5 @@ otelevents:
     enabled: false
 otelagent:
   enabled: false
+opentelemetry-operator:
+  enabled: false
