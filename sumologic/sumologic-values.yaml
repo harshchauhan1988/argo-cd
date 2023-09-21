@@ -21,11 +21,3 @@ metadata:
 otelevents:
   persistence:
     enabled: false
-otelagent:
-  enabled: false
-opentelemetry-operator:
-  enabled: false
-kube-prometheus-stack:
-    enabled: true
-falco:
-  enabled: false
