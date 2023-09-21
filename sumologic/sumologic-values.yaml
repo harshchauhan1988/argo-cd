@@ -1,5 +1,6 @@
 sumologic:
   sumologic:
+    setupEnabled: false
     accessId: <path:backend-nonprod/us-west-2/kubernetes/argocdapp/helm-secrets#accessid>
     accessKey: <path:backend-nonprod/us-west-2/kubernetes/argocdapp/helm-secrets#accesskey>
     clusterName: sjc2-eng
