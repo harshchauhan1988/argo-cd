@@ -2,7 +2,7 @@ apiVersion: v2
 name: wavefront
 version: 1.11.0
 appVersion: 1.11.0
-description: A Helm chart for wavefront.
+description: Wavefront Collector for Kubernetes.
 type: application
 dependencies:
   - name: wavefront
