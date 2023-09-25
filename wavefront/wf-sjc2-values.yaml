@@ -16,7 +16,6 @@ proxy:
         action : block
         scope  : metricName
         match  : "cws.*"
-
       # The new filtered CWS metrics after the CWS outage.
       - rule   : drop-cws_prometheus_build
         action : block
