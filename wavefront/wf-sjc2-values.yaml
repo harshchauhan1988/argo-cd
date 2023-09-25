@@ -2,7 +2,7 @@ fullnameOverride: sjc2-eng
 clusterName: sjc2-eng
 wavefront:
   token: <path:backend-nonprod/us-west-2/kubernetes/argocdapp/helm-secrets#common-wf-token>
-  url: https://vmwareprod2.wavefront.com
+  url: <path:backend-nonprod/us-west-2/kubernetes/argocdapp/helm-secrets#wf-nonprod-url>
 collector:
   priorityClassName: daemon-set-priority
   tags:
