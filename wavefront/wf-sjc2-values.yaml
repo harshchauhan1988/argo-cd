@@ -1,8 +1,8 @@
 fullnameOverride: sjc2-eng
 clusterName: sjc2-eng
 wavefront:
-  token: ref+vault://runway_concourse/velo-techops-kubernetes/{{ .Values | get "env.type" "non-existent"}}/wavefront#token
-  url: {{ .Values | get "wavefront.url" "non-existent"}}
+  token: <path:backend-nonprod/us-west-2/kubernetes/argocdapp/helm-secrets#common-wf-token>
+  url: https://vmwareprod2.wavefront.com
 collector:
   priorityClassName: daemon-set-priority
   tags:
