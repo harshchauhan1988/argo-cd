@@ -1,7 +1,10 @@
-- name: wavefront
-  namespace: wavefront
-  createNamespace: true
-  chart: wavefront/wavefront
-  version: 1.11.0
-  values:
-  - wavefront/values.yaml.gotmpl
+apiVersion: v2
+name: wavefront
+version: 1.11.0
+appVersion: 1.11.0
+description: A Helm chart for wavefront.
+type: application
+dependencies:
+  - name: wavefront
+    version: 1.11.0
+    repository: https://wavefronthq.github.io/helm
