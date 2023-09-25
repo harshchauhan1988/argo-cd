@@ -1,0 +1,7 @@
+- name: wavefront
+  namespace: wavefront
+  createNamespace: true
+  chart: wavefront/wavefront
+  version: 1.11.0
+  values:
+  - wavefront/values.yaml.gotmpl
