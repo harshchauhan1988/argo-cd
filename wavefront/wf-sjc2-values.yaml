@@ -8,37 +8,14 @@ collector:
   tags:
     sase.env: sjc2-eng
     sase.svc: tkg
-
-#############################################################################################
-# CWS Metrics from Inbound Gateway to filter out.
-#
-# Documentation on these metrics found here.
-# https://confluence.eng.vmware.com/x/EbZaUg
-#############################################################################################
-###############################################################################################
-# Nice to have Metrics. Feel free to add to filterered metrics if they become a nuisance.
-###############################################################################################
-# - 'build_info'
-# - 'probe_connection_count'
-# - 'probe_latest'
-# - 'proxy_errors_total'
-# - 'tlv_packet_total'
-# - 'traffic_bytes'
-# - 'tunnel_listener'
-# - 'vpn_tunnel_established'
-# - 'vpn_tunnel_last_packet_time'
-# - 'vpnmanager_current_tunnels'
-###############################################################################################
 proxy:
   preprocessor:
     rules.yaml: |
       '2878':
-      {{- if .Values.wavefront.cwsDropAll }}
       - rule   : cws-drop-all
         action : block
         scope  : metricName
         match  : "cws.*"
-      {{- end }}
 
       # The new filtered CWS metrics after the CWS outage.
       - rule   : drop-cws_prometheus_build
