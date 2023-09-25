@@ -1,0 +1,206 @@
+fullnameOverride: sjc2-eng
+clusterName: sjc2-eng
+wavefront:
+  token: ref+vault://runway_concourse/velo-techops-kubernetes/{{ .Values | get "env.type" "non-existent"}}/wavefront#token
+  url: {{ .Values | get "wavefront.url" "non-existent"}}
+collector:
+  priorityClassName: daemon-set-priority
+  tags:
+    sase.env: sjc2-eng
+    sase.svc: tkg
+
+#############################################################################################
+# CWS Metrics from Inbound Gateway to filter out.
+#
+# Documentation on these metrics found here.
+# https://confluence.eng.vmware.com/x/EbZaUg
+#############################################################################################
+###############################################################################################
+# Nice to have Metrics. Feel free to add to filterered metrics if they become a nuisance.
+###############################################################################################
+# - 'build_info'
+# - 'probe_connection_count'
+# - 'probe_latest'
+# - 'proxy_errors_total'
+# - 'tlv_packet_total'
+# - 'traffic_bytes'
+# - 'tunnel_listener'
+# - 'vpn_tunnel_established'
+# - 'vpn_tunnel_last_packet_time'
+# - 'vpnmanager_current_tunnels'
+###############################################################################################
+proxy:
+  preprocessor:
+    rules.yaml: |
+      '2878':
+      {{- if .Values.wavefront.cwsDropAll }}
+      - rule   : cws-drop-all
+        action : block
+        scope  : metricName
+        match  : "cws.*"
+      {{- end }}
+
+      # The new filtered CWS metrics after the CWS outage.
+      - rule   : drop-cws_prometheus_build
+        action : block
+        scope  : metricName
+        match  : "cws.prometheus.build.*"
+      - rule   : drop-cws_prometheus_go
+        action : block
+        scope  : metricName
+        match  : "cws.prometheus.go.*"
+      - rule   : drop-cws_prometheus_loglistener
+        action : block
+        scope  : metricName
+        match  : "cws.prometheus.loglistener.*"
+      - rule   : drop-cws_prometheus_policy
+        action : block
+        scope  : metricName
+        match  : "cws.prometheus.policy.*"
+      - rule   : drop-cws_prometheus_probe
+        action : block
+        scope  : metricName
+        match  : "cws.prometheus.probe.*"
+      - rule   : drop-cws_prometheus_process
+        action : block
+        scope  : metricName
+        match  : "cws.prometheus.process.*"
+      - rule   : drop-cws_prometheus_promhttp
+        action : block
+        scope  : metricName
+        match  : "cws.prometheus.promhttp.*"
+      - rule   : drop-cws_prometheus_s3fetch
+        action : block
+        scope  : metricName
+        match  : "cws.prometheus.s3fetch.*"
+      - rule   : drop-cws_prometheus_traffic
+        action : block
+        scope  : metricName
+        match  : "cws.prometheus.traffic.*"
+      - rule   : drop-cws_prometheus_tunnel
+        action : block
+        scope  : metricName
+        match  : "cws.prometheus.tunnel.*"
+      - rule   : drop-cws_prometheus_accepted
+        action : block
+        scope  : metricName
+        match  : "cws.prometheus.proxy.accepted.*"
+      - rule   : drop-cws_prometheus_bytes
+        action : block
+        scope  : metricName
+        match  : "cws.prometheus.proxy.bytes.*"
+      - rule   : drop-cws_prometheus_length
+        action : block
+        scope  : metricName
+        match  : "cws.prometheus.proxy.length.*"
+
+      - rule   : drop-cws_cgroup_memory
+        action : block
+        scope  : metricName
+        match  : "cws.cgroup.memory.*"
+      - rule   : drop-conntrack
+        action : block
+        scope  : metricName
+        match  : "cws.conntrack.*"
+      - rule   : drop-cws_usage_guest
+        action : block
+        scope  : metricName
+        match  : "cws.cpu.usage.guest*"
+      - rule   : drop-cws_cpu_usage_idle
+        action : block
+        scope  : metricName
+        match  : "cws.cpu.usage.idle*"
+      - rule   : drop-cws_cpu_usage_iowait
+        action : block
+        scope  : metricName
+        match  : "cws.cpu.usage.iowait*"
+      - rule   : drop-cws_cpu_usage_irq
+        action : block
+        scope  : metricName
+        match  : "cws.cpu.usage.irq*"
+      - rule   : drop-cws_cpu_usage_nice
+        action : block
+        scope  : metricName
+        match  : "cws.cpu.usage.nice*"
+      - rule   : drop-cws_cpu_usage_softirq
+        action : block
+        scope  : metricName
+        match  : "cws.cpu.usage.softirq*"
+      - rule   : drop-cws_mem_commit
+        action : block
+        scope  : metricName
+        match  : "cws.mem.commit.*"
+      - rule   : drop-cws_cpu_mem_committed
+        action : block
+        scope  : metricName
+        match  : "cws.mem.committed.*"
+      - rule   : drop-mem_dirty
+        action : block
+        scope  : metricName
+        match  : "cws.mem.dirty*"
+      - rule   : drop-cws_diskio
+        action : block
+        scope  : metricName
+        match  : "cws.diskio.*"
+      - rule   : drop-cws_internal
+        action : block
+        scope  : metricName
+        match  : "cws.internal.*"
+      - rule   : drop-cws_kernel
+        action : block
+        scope  : metricName
+        match  : "cws.kernel.*"
+      - rule   : drop-cws_linux
+        action : block
+        scope  : metricName
+        match  : "cws.linux.*"
+      - rule   : drop-cws_procstat
+        action : block
+        scope  : metricName
+        match  : "cws.procstat.*"
+      - rule   : drop-swap
+        action : block
+        scope  : metricName
+        match  : "cws.swap.*"
+      - rule   : drop-tasks
+        action : block
+        scope  : metricName
+        match  : "cws.tasks.*"
+
+      # Envoy metrics that are not needed. See VCTO-6630
+      - rule   : drop-envoy-cluster_upstream
+        action : block
+        scope  : metricName
+        match  : "envoy.cluster.upstream.*"
+      - rule   : drop-envoy-cluster_lb
+        action : block
+        scope  : metricName
+        match  : "envoy.cluster.lb.*"
+      - rule   : drop-envoy-cluster_circuit
+        action : block
+        scope  : metricName
+        match  : "envoy.cluster.circuit.*"
+      - rule   : drop-envoy-cluster_update
+        action : block
+        scope  : metricName
+        match  : "envoy.cluster.update.*"
+      - rule   : drop-envoy-cluster_external
+        action : block
+        scope  : metricName
+        match  : "envoy.cluster.external.*"
+      - rule   : drop-envoy-cluster_control
+        action : block
+        scope  : metricName
+        match  : "envoy.cluster.control.*"
+      - rule   : drop-envoy-cluster_assignment
+        action : block
+        scope  : metricName
+        match  : "envoy.cluster.assignment.*"
+      - rule   : drop-envoy-vhost
+        action : block
+        scope  : metricName
+        match  : "envoy.vhost.*"
+
+  tags:
+    sase.env: sjc2-eng
+    sase.svc: tkg
